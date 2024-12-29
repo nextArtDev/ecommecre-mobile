@@ -37,7 +37,7 @@ export default function RootLayout() {
     <GluestackUIProvider>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="product" />
+        <Stack.Screen name="product/[id]" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
