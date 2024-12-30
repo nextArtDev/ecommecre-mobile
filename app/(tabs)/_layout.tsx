@@ -8,9 +8,11 @@ import TabBarBackground from '@/components/ui/TabBarBackground'
 import { Colors } from '@/constants/Colors'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { Ionicons } from '@expo/vector-icons'
+import { useCart } from '@/store/cartStore'
 
 export default function TabLayout() {
   const colorScheme = useColorScheme()
+  const items = useCart((state) => state.items)
 
   return (
     <Tabs
@@ -59,7 +61,7 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: 'Cart',
-          tabBarBadge: 3,
+          tabBarBadge: items.length || 0,
           tabBarIcon: ({ color }) => (
             <Ionicons name="cart-outline" size={22} color={color} />
           ),

@@ -14,11 +14,13 @@ import { ActivityIndicator } from 'react-native'
 import products from '../../assets/products.json'
 import { useQuery } from '@tanstack/react-query'
 import { fetchProductById } from '@/api/products'
+import { useCart } from '@/store/cartStore'
 export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
   // const product = products.find((item) => item.id === +id)
   // if (!product) return null
-  //   const addProduct = useCart((state) => state.addProduct)
+
+  const addProduct = useCart((state) => state.addProduct)
 
   const {
     data: product,
@@ -29,9 +31,9 @@ export default function ProductDetailsScreen() {
     queryFn: () => fetchProductById(Number(id)),
   })
 
-  // const addToCart = () => {
-  //   addProduct(product)
-  // }
+  const addToCart = () => {
+    addProduct(product)
+  }
 
   if (isLoading) {
     return <ActivityIndicator />
@@ -42,7 +44,7 @@ export default function ProductDetailsScreen() {
   }
 
   return (
-    <Box className="flex-1 items-center p-3">
+    <Box className="flex-1 items-center p-3 ">
       <Stack.Screen options={{ title: product.name }} />
 
       <Card className="p-5 rounded-lg max-w-[960px] w-full flex-1 ">
@@ -65,7 +67,7 @@ export default function ProductDetailsScreen() {
         </VStack>
         <Box className="flex-col sm:flex-row">
           <Button
-            // onPress={addToCart}
+            onPress={addToCart}
             className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
           >
             <ButtonText size="sm">Add to cart</ButtonText>
