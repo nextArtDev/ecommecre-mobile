@@ -1,22 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import LoginScreen from '../(auth)/login'
 
 type Props = {}
 
 const ProfileScreen = (props: Props) => {
   return (
-    <View style={styles.container}>
-      <Text>Profile Screen</Text>
+    <View className="w-full h-full flex items-center justify-center">
+      <LoginScreen />
     </View>
   )
 }
 
 export default ProfileScreen
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
