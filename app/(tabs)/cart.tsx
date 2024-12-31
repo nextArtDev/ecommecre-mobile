@@ -10,6 +10,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 // import { createPaymentIntent } from '@/api/stripe'
 // import { useStripe } from '@stripe/stripe-react-native'
 import { useEffect } from 'react'
+import { createOrder } from '@/api/orders'
 
 export default function CartScreen() {
   const items = useCart((state) => state.items)
@@ -50,22 +51,22 @@ export default function CartScreen() {
 
   const router = useRouter()
 
-  // const createOrderMutation = useMutation({
-  //   mutationFn: () =>
-  //     createOrder(
-  //       items.map((item) => ({
-  //         productId: item.product.id,
-  //         quantity: item.quantity,
-  //         price: item.product.price, // MANAGE FORM SERVER SIDE
-  //       }))
-  //     ),
-  //   onSuccess: (data) => {
-  //     paymentIntentMutation.mutate({ orderId: data.id })
-  //   },
-  //   onError: (error) => {
-  //     console.log(error)
-  //   },
-  // })
+  const createOrderMutation = useMutation({
+    mutationFn: () =>
+      createOrder(
+        items.map((item) => ({
+          productId: item.product.id,
+          quantity: item.quantity,
+          price: item.product.price, // MANAGE FORM SERVER SIDE
+        }))
+      ),
+    onSuccess: (data) => {
+      // paymentIntentMutation.mutate({ orderId: data.id })
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
 
   // const openPaymentSheet = async () => {
   //   // const { error } = await presentPaymentSheet()
@@ -82,7 +83,7 @@ export default function CartScreen() {
   // }
 
   const onCheckout = async () => {
-    // createOrderMutation.mutateAsync()
+    createOrderMutation.mutateAsync()
     // openPaymentSheet();
   }
 

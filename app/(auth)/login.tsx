@@ -62,7 +62,7 @@ export default function LoginScreen() {
 
   return (
     <FormControl
-      isInvalid={!!loginMutation.error || !!signupMutation.error}
+      isInvalid={loginMutation.error || signupMutation.error}
       className="p-4 border rounded-lg w-[90%] mx-auto max-w-[500px] border-outline-300 bg-white m-2"
     >
       <VStack space="xl">
