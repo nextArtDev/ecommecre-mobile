@@ -9,6 +9,7 @@ import { Colors } from '@/constants/Colors'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { Ionicons } from '@expo/vector-icons'
 import { useCart } from '@/store/cartStore'
+import { CustomTabBar } from '@/components/tab-bar/CustomTabbar'
 
 export default function TabLayout() {
   const colorScheme = useColorScheme()
@@ -16,65 +17,66 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}
+      tabBar={(props) => <CustomTabBar {...props} />}
+      // screenOptions={{
+      //   tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      //   headerShown: false,
+      //   tabBarButton: HapticTab,
+      //   tabBarBackground: TabBarBackground,
+      //   tabBarStyle: Platform.select({
+      //     ios: {
+      //       // Use a transparent background on iOS to show the blur effect
+      //       position: 'absolute',
+      //     },
+      //     default: {},
+      //   }),
+      // }}
     >
       <Tabs.Screen
         name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="home-outline" size={22} color={color} />
-          ),
-        }}
+        // options={{
+        //   title: 'Home',
+        //   tabBarIcon: ({ color }) => (
+        //     <Ionicons name="home-outline" size={22} color={color} />
+        //   ),
+        // }}
       />
       <Tabs.Screen
         name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="search-outline" size={22} color={color} />
-          ),
-        }}
+        // options={{
+        //   title: 'Explore',
+        //   tabBarIcon: ({ color }) => (
+        //     <Ionicons name="search-outline" size={22} color={color} />
+        //   ),
+        // }}
       />
       <Tabs.Screen
         name="notifications"
-        options={{
-          title: 'Notification',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="notifications-outline" size={22} color={color} />
-          ),
-        }}
+        // options={{
+        //   title: 'Notification',
+        //   tabBarIcon: ({ color }) => (
+        //     <Ionicons name="notifications-outline" size={22} color={color} />
+        //   ),
+        // }}
       />
       <Tabs.Screen
         name="cart"
-        options={{
-          title: 'Cart',
-          tabBarBadge: items.length || 0,
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="cart-outline" size={22} color={color} />
-          ),
-        }}
+        // options={{
+        //   title: 'Cart',
+        //   tabBarBadge: items.length || 0,
+        //   tabBarIcon: ({ color }) => (
+        //     <Ionicons name="cart-outline" size={22} color={color} />
+        //   ),
+        // }}
       />
       <Tabs.Screen
         name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="person-outline" size={22} color={color} />
-          ),
-        }}
+        // options={{
+        //   title: 'Profile',
+        //   tabBarIcon: ({ color }) => (
+        //     <Ionicons name="person-outline" size={22} color={color} />
+        //   ),
+        // }}
       />
     </Tabs>
   )
